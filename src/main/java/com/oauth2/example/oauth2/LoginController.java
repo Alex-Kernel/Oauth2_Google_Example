@@ -32,7 +32,7 @@ public class LoginController {
     private JwtService jwtService;
 
     @GetMapping(path = "login")
-    public ResponseEntity<String> singIn(@RequestParam(name = "code") String googleCode) throws IOException, GeneralSecurityException {
+    public ResponseEntity<String> signIn(@RequestParam(name = "code") String googleCode) throws IOException, GeneralSecurityException {
         String idToken = sendAuthRequestToGoogle(googleCode);
         String jwtToken = jwtService.generateJwtToken(idToken);
         return new ResponseEntity<>(jwtToken, HttpStatus.OK);
